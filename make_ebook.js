@@ -23,10 +23,13 @@ function DetectSize(width, height) {
   if ( PageSizes.A5[0] == width && PageSizes.A5[1] == height ) {
     return { width: PageSizes.A5[0], height: PageSizes.A5[1] };
   }
-  if ( PageSizes.B5[0] == width && PageSizes.B5[1] == height ) {
-    return { width: PageSizes.B5[0], height: PageSizes.B5[1] };
+  // B5 の規定は日本と海外で違うため、既に定義されているものは使えない.
+  const B5jp = { width: 515.91, height: 728.50 };
+  if ( B5jp.width == width && B5jp.height == height ) {
+    return { width: B5jp.width, height: B5jp.height };
   }
   console.error("cannot detect.");
+  return { width: width, height: height };
 }
 
 async function setImageIntoPage(doc, page, fileName, size) {
