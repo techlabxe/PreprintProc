@@ -25,4 +25,6 @@ case "$1" in
 "ebook") echo "Preparing e-book data"
   makeEbook $2 $3 $4 $5
   ;;
+*) echo "mode is submission or ebook"
+  ;;
 esac
